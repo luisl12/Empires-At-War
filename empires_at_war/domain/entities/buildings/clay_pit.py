@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
 """
-empires_at_war.domain.entities.iron_mine
+empires_at_war.domain.entities.buildings.clay_pit
 -------
 
-This module provides the code for the iron mine entity.
+This module provides the code for the clay pit entity.
 """
 
 # building
 from .building import Building
 
-class IronMine(Building):
-    """Iron Mine building
+class ClayPit(Building):
+    """Clay Pit building
 
     Args:
         Building (Building): Building object
     """
 
     def __init__(self) -> None:
-        super().__init__("Iron Mine")
+        super().__init__("Clay Pit")
         self.__production_rate = self.level * 50
 
     @property

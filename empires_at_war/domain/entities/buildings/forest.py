@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-empires_at_war.domain.entities.forest
+empires_at_war.domain.entities.buildings.forest
 -------
 
 This module provides the code for the forest entity.

@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-empires_at_war.domain.entities.building
+empires_at_war.domain.entities.buildings.building
 -------
 
 This module provides the code for the building entity.
 """
 
 class Building:
+    """General building
+    """
 
     def __init__(self, name) -> None:
         self.__name = name
@@ -15,10 +17,6 @@ class Building:
     @property
     def name(self):
         return self.__name
-
-    @name.setter
-    def name(self, value):
-        self.__name = value
 
     @property
     def level(self):

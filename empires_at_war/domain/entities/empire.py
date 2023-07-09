@@ -7,10 +7,10 @@ This module provides the code for the empire entity.
 """
 
 # buildings
-from .headquarter import Headquarter
-from .forest import Forest
-from .clay_pit import ClayPit
-from .iron_mine import IronMine
+from .buildings.headquarter import Headquarter
+from .buildings.forest import Forest
+from .buildings.clay_pit import ClayPit
+from .buildings.iron_mine import IronMine
 
 class Empire:
 

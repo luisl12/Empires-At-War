@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-empires_at_war.domain.entities.headquarter
+empires_at_war.domain.entities.buildings.headquarter
 -------
 
 This module provides the code for the headquarter entity.
