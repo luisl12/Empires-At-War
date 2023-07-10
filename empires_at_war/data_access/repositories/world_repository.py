@@ -6,61 +6,44 @@ driver_profile_api.dataaccess.repositories.client_repository
 This module provides the client repository.
 """
 
-# packages
-from sqlalchemy.orm import Session
-from sqlalchemy.exc import SQLAlchemyError
 # entities
-from ...domain.entities.world import World
-# models
-from ..models.world import World as WorldModel
+from domain.entities.world import World
+# connectors
+from ..db.connectors.mariadb_connector import MariaDBConnector
 
-class WorldRepository:
-    """
-    World Repository
-    """
+class WordRepository:
+    def __init__(self):
+        self.__db = MariaDBConnector(
+            host='localhost', 
+            port=3306, 
+            user='root', 
+            password='mariadb', 
+            database='empires_at_war'
+        )
 
-    def __init__(self, engine) -> None:
-        """
-        World repository constructor
+    def create_world(self, world):
+        query = "INSERT INTO world (uuid, name) VALUES (%s, %s)"
+        values = (world.uuid, world.name)
+        self.__db.execute_query(query, False, values)
 
-        Args:
-            engine (DB Engine): DB Engine
-
-        """
-        self.engine = engine
-
-    def create(self, world) -> None:
-        """Creates new world
-
-        Args:
-            world (entities.world.World): World
-        """
-        with Session(self.engine) as session:
-            try:
-                # TODO: Create empire when create world
-                new_world = WorldModel(uuid=world.uuid, name=world.name)
-                session.add(new_world)
-                session.commit()
-            except SQLAlchemyError as err:     
-                session.rollback()
-
-    def read(self, uuid) -> World:
-        """_summary_
-
-        Args:
-            uuid (str): World uuid
-
-        Returns:
-            entities.world.World: World entity
-        """
+    def get_world(self, world_uuid):
+        query = "SELECT * FROM world WHERE uuid = %s"
+        result = self.__db.execute_query(query, True, (world_uuid,))
+        print(result)
         world = None
-        with Session(self.engine) as session:
-            world_db = session.query(self.model) \
-                .filter_by(uuid=uuid).first() 
-            if world_db:
-                world = World(
-                    uuid=world_db.uuid, 
-                    name=world_db.name, 
-                    empires=world_db.empires
-                )
+        if result:
+            world = World(result[0][1], result[0][2])
+            world.id = result[0][0]
         return world
+
+    def update_world(self, world):
+        query = "UPDATE world SET name = %s WHERE uuid = %s"
+        values = (world.name, world.uuid)
+        self.__db.execute_query(query, False, values)
+
+    def delete_world(self, world_uuid):
+        query = "DELETE FROM world WHERE uuid = %s"
+        self.__db.execute_query(query, False, (world_uuid,))
+
+    def __del__(self):
+        self.__db.close()

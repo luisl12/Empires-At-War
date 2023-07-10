@@ -3,5 +3,5 @@
 empires_at_war.data_access
 -------
 
-This package provides the data acess business logic.
+This package defines the data access layer logic.
 """

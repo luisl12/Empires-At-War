@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Empires-At-War
+empires-at-war
 -------
 
 This package is the game src.

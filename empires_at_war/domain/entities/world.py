@@ -7,11 +7,10 @@ This module provides the code for the world entity.
 """
 
 class World:
-
-    def __init__(self, uuid, name, empires) -> None:
+    def __init__(self, uuid, name):
+        self.__id = None
         self.__uuid = uuid
         self.__name = name
-        self.__empires = empires
 
     @property
     def uuid(self):
@@ -26,9 +25,13 @@ class World:
         self.__name = value
 
     @property
-    def empires(self):
-        return self.__empires
+    def id(self):
+        return self.__id
 
-    def __repr__(self) -> str:
-        txt = "<World(name={})>"
-        return txt.format(self.__name) 
+    @id.setter
+    def id(self, value):
+        self.__id = value
+
+    def __repr__(self):
+        txt = "<World(uuid={}, name={})>"
+        return txt.format(self.__uuid, self.__name) 

@@ -3,6 +3,6 @@
 empires_at_war.domain.entities
 -------
 
-This package provides the entities business logic.
+This package defines the data entities.
 """
-from .empire import Empire
+from .world import World

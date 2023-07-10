@@ -3,5 +3,6 @@
 empires_at_war.data_access.repositories
 -------
 
-This package provides the data acess repositories business logic.
+This package defines the data access repositories.
 """
+from .world_repository import WordRepository

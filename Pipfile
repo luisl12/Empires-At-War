@@ -4,8 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-sqlalchemy = "*"
-sqlalchemy-utils = "*"
+mysql-connector-python = "*"
+yoyo-migrations = "*"
+mysqlclient = "*"
 
 [dev-packages]
 
